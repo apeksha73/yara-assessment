@@ -13,6 +13,9 @@ The Docker Compose configuration defines a multi-container application composed 
 - mysql-service: mysql is a service running the official MySQL image (mysql:latest). 'environment' sets environment variables for configuring the MySQL service, including the root password, database name, user, and user password. 'ports' maps port 3306 on your host to port 3306 in the MySQL container.
 
 ## Nginx Configuration file 
+> **Note**
+> Some of the nginx configurations given in the question is not applicable here becaue I am hosting the NodeJS application on localhost.
+
 - 'location / {': This block defines how Nginx should process requests that match the location defined here, which is the root directory ("/"). This means it will handle all requests to the server.
 - 'proxy_pass http://node-app:3000;': This directive is the heart of the reverse proxy configuration. It instructs Nginx to forward incoming requests to a backend server running at the specified URL, in this case, "http://node-app:3000."
 - 'proxy_set_header Host $host;': This directive sets the "Host" header of the forwarded request to the value of the original request's "Host" header. This is important because the backend Node.js application may use the "Host" header for routing and virtual hosting purposes. 
