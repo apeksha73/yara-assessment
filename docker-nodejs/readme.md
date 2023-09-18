@@ -1,11 +1,6 @@
 # Explanation
 
 ## Directory Structure:
-app/
-├── app.js
-├── package.json
-├── Dokckerfile
-
 App folder: App folder is NodeJS application directory.
 - app.js: Contains application code of nodejs application
 - Dockerfile: This Dockerfile uses the official Node.js image as a base, sets the working directory, copies package.json to install dependencies, copies the rest of the application code, exposes port 3000 (the port your Node.js app is listening on), and defines the command to run your application.
