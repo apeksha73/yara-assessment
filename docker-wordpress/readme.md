@@ -7,6 +7,7 @@ The Docker Compose file, which is used to define and manage multi-container Dock
 - nginx service: nginx is a service running the official Nginx image (nginx:latest).'ports' maps port 80 on the host to port 80 on the Nginx container. 'volumes' mounts an Nginx configuration file from the local directory (./nginx/default.conf) into the Nginx container at /etc/nginx/conf.d/default.conf. This configuration file likely contains settings for Nginx to act as a reverse proxy for our Node.js application. 'depends_on' specifies that the nginx service depends on the node-app service. This ensures that Nginx starts only after the Node.js application is up and running.
 - mysql-service: mysql is a service running the official MySQL image (mysql:latest). 'environment' sets environment variables for configuring the MySQL service, including the root password, database name, user, and user password.
 - wp-net network: Defines a custom Docker network named "wp-net." All services within this docker-compose.yml file are connected to this network, allowing them to communicate with each other.
+- Data container:  A data container is used to share data between services. It can be used for persistent storage of wordpress application files and MySQL data.
 
 
 ## Nginx Configuration file 

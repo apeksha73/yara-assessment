@@ -46,5 +46,11 @@ services:
     depends_on:
       - php-fpm
 
+  data-container:
+    image: busybox:latest
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+      - db_data:/var/lib/mysql    
+
 volumes:
   db_data:
