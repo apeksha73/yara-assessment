@@ -1,0 +1,16 @@
+[Unit]
+Description=Redis Docker Container
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+ExecStartPre=-/usr/bin/docker stop redis
+ExecStartPre=-/usr/bin/docker rm redis
+ExecStartPre=/usr/bin/docker pull redis
+ExecStart=/usr/bin/docker run --name redis -p 6379:6379 -d redis
+ExecStop=/usr/bin/docker stop redis
+
+[X-Fleet]
+Global=true

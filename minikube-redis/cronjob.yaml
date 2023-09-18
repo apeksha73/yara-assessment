@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: redis-data-load
+spec:
+  schedule: "*/5 * * * *"  # Cron schedule for running the job every 5 minutes
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: data-loader
+            image: redis:latest
+            args:
+            - /bin/sh
+            - -c
+            - |
+              redis-cli -h redis-service set name apeksha
+              redis-cli -h redis-service set occupation devopsengineer
+              redis-cli -h redis-service set company yara
+          restartPolicy: OnFailure 

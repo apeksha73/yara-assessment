@@ -1,0 +1,16 @@
+[Unit]
+Description=Memcached Docker Container
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+ExecStartPre=-/usr/bin/docker stop memcached
+ExecStartPre=-/usr/bin/docker rm memcached
+ExecStartPre=/usr/bin/docker pull memcached
+ExecStart=/usr/bin/docker run --name memcached -p 11211:11211 -d memcached
+ExecStop=/usr/bin/docker stop memcached
+
+[X-Fleet]
+Global=true

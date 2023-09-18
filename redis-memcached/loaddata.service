@@ -1,0 +1,6 @@
+[Unit]
+Description=Load Dummy Data into Redis
+
+[Service]
+Type=oneshot
+ExecStart=redis-memcached\script.sh

@@ -1,0 +1,9 @@
+[Unit]
+Description=Load Dummy Data into Redis Timer
+
+[Timer]
+OnUnitActiveSec=5m
+Unit=load_data.service
+
+[Install]
+WantedBy=multi-user.target

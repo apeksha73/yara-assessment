@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:latest
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: wordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+
+  wordpress:
+    image: wordpress:latest
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+    depends_on:
+      - mysql
+    environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    ports:
+      - "8080:80"  
+
+  php-fpm:
+    image: php:fpm
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+    depends_on:
+      - mysql
+
+  nginx:
+    image: nginx:latest
+    links:
+      - php-fpm
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx-conf:/etc/nginx/conf.d
+      - ./wp-content:/var/www/html/wp-content
+    depends_on:
+      - php-fpm
+
+volumes:
+  db_data:
