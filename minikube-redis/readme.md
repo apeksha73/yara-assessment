@@ -1,5 +1,5 @@
 # Explanation
-> ** Important Note**
+> **Note**
 > Alternative solution to coreOS and fleetctl deployment is using kubernetes and kubectl. 
 
 redis deployment:  It is used to define and manage the deployment of a Redis container within a Kubernetes cluster.
