@@ -1,11 +1,6 @@
 # Explanation
 
 ## Directory Structure:
-app/
-├── app.js
-├── package.json
-├── Dokckerfile
-
 App folder: App folder is NodeJS application directory.
 - app.js: Contains application code of nodejs application
 - Dockerfile: This Dockerfile uses the official Node.js image as a base, sets the working directory, copies package.json to install dependencies, copies the rest of the application code, exposes port 3000 (the port your Node.js app is listening on), and defines the command to run your application.
@@ -19,6 +14,9 @@ The Docker Compose configuration defines a multi-container application composed 
 - Data container:  A data container is used to share data between services. It can be used for persistent storage of Node.js application files and MySQL data.
 
 ## Nginx Configuration file 
+> **Note**
+> Some of the nginx configurations given in the question is not applicable here becaue I am hosting the NodeJS application on localhost.
+
 - 'location / {': This block defines how Nginx should process requests that match the location defined here, which is the root directory ("/"). This means it will handle all requests to the server.
 - 'proxy_pass http://node-app:3000;': This directive is the heart of the reverse proxy configuration. It instructs Nginx to forward incoming requests to a backend server running at the specified URL, in this case, "http://node-app:3000."
 - 'proxy_set_header Host $host;': This directive sets the "Host" header of the forwarded request to the value of the original request's "Host" header. This is important because the backend Node.js application may use the "Host" header for routing and virtual hosting purposes. 
