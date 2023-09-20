@@ -24,8 +24,6 @@ services:
       MYSQL_DATABASE: nodejs_db
       MYSQL_USER: apeksha
       MYSQL_PASSWORD: Robusta@1A
-    ports:
-      - "3306:3306"
 
   data-container:
     image: busybox:latest
