@@ -14,7 +14,7 @@ services:
   wordpress:
     image: wordpress:latest
     volumes:
-      - ./wp-content:/var/www/html/wp-content
+      - wordpress:/var/www/html
     depends_on:
       - mysql
     environment:
@@ -30,7 +30,7 @@ services:
     ports:
       - "9000:9000"
     volumes:
-      - ./wp-content:/var/www/html/wp-content
+      - wordpress:/var/www/html
     depends_on:
       - mysql
 
@@ -42,15 +42,16 @@ services:
       - "80:80"
     volumes:
       - ./nginx-conf:/etc/nginx/conf.d
-      - ./wp-content:/var/www/html/wp-content
+      - wordpress:/var/www/html
     depends_on:
       - php-fpm
 
   data-container:
     image: busybox:latest
     volumes:
-      - ./wp-content:/var/www/html/wp-content
+      - wordpress:/var/www/html
       - db_data:/var/lib/mysql    
 
 volumes:
   db_data:
+  wordpress:
